@@ -28,6 +28,11 @@ jobs:
       - name: Build (Release|Any CPU)
         run: msbuild UIEdit.sln /p:Configuration=Release /p:Platform="Any CPU" /t:Build /v:minimal
 
+      - name: Copy native FreeImage.dll to output
+        run: |
+          copy Library\FreeImage.dll UIEdit\bin\x86\Release\FreeImage.dll
+          copy Library\FreeImage.dll UIEdit\bin\Release\FreeImage.dll
+
       - name: Upload build artifacts (x86)
         uses: actions/upload-artifact@v4
         with:
