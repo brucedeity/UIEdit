@@ -33,3 +33,35 @@ jobs:
         with:
           name: UIEdit-x86
           path: UIEdit/bin/x86/Release/
+
+      - name: Package release zip
+        shell: powershell
+        run: |
+          Compress-Archive -Path UIEdit\bin\x86\Release\* -DestinationPath UIEdit-x86.zip
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: UIEdit v1.0.${{ github.run_number }}
+          body: |
+            诛仙（Angelica 引擎）UI 可视化编辑器 - 中文汉化版
+
+            ## 更新内容
+            - 中文界面汉化
+            - 修复 FreeImage.dll 32/64 位不匹配导致的闪退问题
+            - GitHub 链接更新
+
+            ## 运行要求
+            - Windows 7 及以上
+            - .NET Framework 4.8（Win10/11 自带）
+
+            ## 使用方法
+            1. 下载 `UIEdit-x86.zip`
+            2. 解压到任意目录
+            3. 运行 `UIEdit.exe`
+            4. 选择界面文件路径（interface.pck 解压后的 XML 目录）
+            5. 选择贴图文件路径（surfaces.pck 解压后的目录）
+          files: UIEdit-x86.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

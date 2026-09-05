@@ -1,29 +1,45 @@
-# **UIEdit: User Interface Editor for Angelica Engine Games**
-**UIEdit** is a powerful and intuitive user interface editing tool designed specifically for developers and designers working with the **Angelica Engine**—a modern game engine known for its flexibility and performance in 2D and 3D game development.
+# **UIEdit：诛仙（Angelica 引擎）UI 可视化编辑器**
 
-## 🔧 **Core Features**
-- **WYSIWYG Interface**: UIEdit offers a "What You See Is What You Get" environment, allowing creators to visually design and manipulate UI elements in real time.
-- **Drag-and-Drop Editing**: Easily place, resize, and align UI components such as buttons, panels, sliders, and text fields with precision.
-- **Live Preview Mode**: Instantly preview how the UI will appear and behave in-game, with support for multiple screen resolutions and aspect ratios.
-- **Component-Based Architecture**: Each UI element is modular and customizable, supporting properties like animations, transitions, and event bindings.
-- **Theme and Style Management**: Create and apply consistent visual themes across your game’s interface, including fonts, colors, and textures.
-- **Localization Support**: Built-in tools for managing multilingual text and dynamic content updates.
+**UIEdit** 是专为 **Angelica 引擎**（诛仙等游戏使用的 2D/3D 游戏引擎）开发的所见即所得 UI 编辑工具。
 
-## 🧩 **Integration with Angelica Engine**
-- **Seamless Workflow**: UIEdit integrates directly with Angelica Engine’s asset pipeline, enabling real-time updates and synchronization between UI design and game logic.
-- **Script Binding**: Easily bind UI elements to game scripts using Angelica’s scripting language or visual scripting tools.
-- **Prefab System**: Save and reuse UI layouts as prefabs, making it easy to maintain consistency across menus, HUDs, and dialogs.
+## 🔧 **核心功能**
+- **所见即所得**：实时可视化设计 UI 界面，编辑即可预览效果
+- **拖拽编辑**：精确放置、缩放和对齐按钮、面板、滑块、文本框等 UI 组件
+- **实时预览**：即时预览 UI 在游戏中的呈现效果，支持多种分辨率和宽高比
+- **组件化架构**：每个 UI 元素模块化、可定制，支持动画、过渡和事件绑定
+- **主题与样式管理**：创建和应用统一的视觉主题，包括字体、颜色和纹理
+- **多语言支持**：内置多语言文本管理和动态内容更新工具
 
-## 🛠️ **Developer-Friendly Tools**
-- **Hierarchy and Layer Management**: Organize UI elements in a clear, tree-based structure with support for z-ordering and grouping.
-- **Event System**: Define interactive behaviors using a robust event system that supports mouse, touch, and controller input.
-- **Debugging Tools**: Visualize hitboxes, anchors, and layout constraints to fine-tune UI performance and responsiveness.
+## 🧩 **与 Angelica 引擎集成**
+- **无缝工作流**：UIEdit 直接对接 Angelica 引擎的资源管线，UI 设计与游戏逻辑实时同步
+- **脚本绑定**：将 UI 元素绑定到游戏脚本
+- **预制件系统**：保存和复用 UI 布局，保持菜单、HUD 和对话框的一致性
 
-## 🎮 **Use Cases**
-- Main menus, pause screens, and settings panels
-- In-game HUDs (health bars, minimaps, scoreboards)
-- Dialogue systems and inventory interfaces
-- Custom editor tools for modding or user-generated content
+## 🛠️ **开发者工具**
+- **层级与图层管理**：清晰的树形结构组织 UI 元素，支持 Z 序和分组
+- **事件系统**：支持鼠标、触摸和手柄输入的交互行为定义
+- **调试工具**：可视化碰撞盒、锚点和布局约束
 
-## 🛠️ Contributing
-We welcome contributions! Please read our contributing guide to get started.
+## 🎮 **适用场景**
+- 主菜单、暂停界面、设置面板
+- 游戏 HUD（血条、小地图、计分板）
+- 对话系统和背包界面
+- 自定义编辑工具和 Mod 制作
+
+## 📥 **下载**
+前往 [Releases](https://github.com/lzw981731/UIEdit/releases) 页面下载最新版本。
+
+运行要求：Windows 7+，.NET Framework 4.8（Win10/11 自带）。
+
+## 🛠️ **构建**
+项目使用 GitHub Actions 自动构建，push 到 `master` 分支即可触发。
+
+本地构建需要：
+- Visual Studio 2019+ 或 MSBuild
+- .NET Framework 4.8 SDK
+- NuGet
+
+## 📝 **致谢**
+- 原作者：[pdev](https://github.com/perfectdev/UIEdit)
+- 编辑改进：slug © 2020
+- 中文汉化：[lzw981731](https://github.com/lzw981731)
