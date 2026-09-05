@@ -1,0 +1,41 @@
+name: Build UIEdit
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore UIEdit.sln
+
+      - name: Build (Release|x86)
+        run: msbuild UIEdit.sln /p:Configuration=Release /p:Platform=x86 /t:Build /v:minimal
+
+      - name: Build (Release|Any CPU)
+        run: msbuild UIEdit.sln /p:Configuration=Release /p:Platform="Any CPU" /t:Build /v:minimal
+
+      - name: Upload build artifacts (x86)
+        uses: actions/upload-artifact@v4
+        with:
+          name: UIEdit-x86
+          path: UIEdit/bin/x86/Release/
+
+      - name: Upload build artifacts (AnyCPU)
+        uses: actions/upload-artifact@v4
+        with:
+          name: UIEdit-AnyCPU
+          path: UIEdit/bin/Release/
