@@ -27,7 +27,7 @@ namespace UIEdit.Utils
 
         public static ImageSource GetImageSourceFromFileName(string fileName)
         {
-            if (string.IsNullOrEmpty(fileName)) return new BitmapImage();
+            if (string.IsNullOrEmpty(fileName)) return GetEmptyImageSource();
             var pngFileName = fileName.Replace(".dds", ".png").
                 Replace(".DDS", ".png").
                 Replace(".tga", ".png").
@@ -36,17 +36,40 @@ namespace UIEdit.Utils
 
             if (!File.Exists(pngFileName) && File.Exists(fileName))
             {
-                var ms = new FileStream(fileName, FileMode.Open);
-                var dds = FreeImage.LoadFromStream(ms);
-                if (dds.IsNull)
-                    return new BitmapImage();
-                ms.Close();
                 try
                 {
-                    FreeImage.Save(FREE_IMAGE_FORMAT.FIF_PNG, dds, pngFileName, FREE_IMAGE_SAVE_FLAGS.PNG_Z_NO_COMPRESSION);
+                    using (var ms = new FileStream(fileName, FileMode.Open))
+                    {
+                        var dds = FreeImage.LoadFromStream(ms);
+                        if (dds.IsNull)
+                            return GetEmptyImageSource();
+
+                        ms.Close();
+                        try
+                        {
+                            FreeImage.Save(FREE_IMAGE_FORMAT.FIF_PNG, dds, pngFileName, FREE_IMAGE_SAVE_FLAGS.PNG_Z_NO_COMPRESSION);
+                        }
+                        catch (Exception)
+                        {
+                        }
+                        finally
+                        {
+                            dds.SetNull();
+                        }
+                    }
                 }
-                catch (Exception) { }
-                dds.SetNull();
+                catch (DllNotFoundException)
+                {
+                    return GetErrorImageSource();
+                }
+                catch (BadImageFormatException)
+                {
+                    return GetErrorImageSource();
+                }
+                catch (EntryPointNotFoundException)
+                {
+                    return GetErrorImageSource();
+                }
                 ClearMemory();
             }
             if (File.Exists(pngFileName))
@@ -67,6 +90,11 @@ namespace UIEdit.Utils
                                             bitmapImage.Palette,
                                             pixelData, stride);
             }
+            return File.Exists(fileName) ? GetErrorImageSource() : GetEmptyImageSource();
+        }
+
+        private static ImageSource GetErrorImageSource()
+        {
             using (var memory = new MemoryStream())
             {
                 Properties.Resources.errorpic.Save(memory, ImageFormat.Png);
@@ -80,18 +108,37 @@ namespace UIEdit.Utils
             }
         }
 
+        private static ImageSource GetEmptyImageSource()
+        {
+            return BitmapSource.Create(
+                1,
+                1,
+                96,
+                96,
+                PixelFormats.Bgra32,
+                null,
+                new byte[4],
+                4);
+        }
+
+        private static bool IsInvalidImageSize(double width, double height)
+        {
+            return double.IsNaN(width) || double.IsInfinity(width) || width <= 0
+                || double.IsNaN(height) || double.IsInfinity(height) || height <= 0;
+        }
+
 
         public static ImageSource FrameImage(string fileName, double targetWidth, double targetHeight, int framesCount)
         {
-            if (string.IsNullOrEmpty(fileName)) return new BitmapImage();
-            if (targetWidth == 0 || targetHeight == 0) return new BitmapImage();
+            if (string.IsNullOrEmpty(fileName)) return GetEmptyImageSource();
+            if (IsInvalidImageSize(targetWidth, targetHeight)) return GetEmptyImageSource();
             GetImageSourceFromFileName(fileName);
             var pngFileName = fileName.Replace(".dds", ".png").
                 Replace(".DDS", ".png").
                 Replace(".tga", ".png").
                 Replace(".jpg", ".png").
                 Replace(".TGA", ".png");
-            if (!File.Exists(pngFileName)) return new BitmapImage();
+            if (!File.Exists(pngFileName)) return GetEmptyImageSource();
             var sourceImage = Image.FromFile(pngFileName);
             var targetImage = new BitmapImage();
             var img = new Bitmap((int)targetWidth, (int)targetHeight);
@@ -118,15 +165,15 @@ namespace UIEdit.Utils
 
         public static ImageSource TrueStretchImage(string fileName, double targetWidth, double targetHeight)
         {
-            if (string.IsNullOrEmpty(fileName)) return new BitmapImage();
-            if (targetWidth == 0 || targetHeight == 0) return new BitmapImage();
+            if (string.IsNullOrEmpty(fileName)) return GetEmptyImageSource();
+            if (IsInvalidImageSize(targetWidth, targetHeight)) return GetEmptyImageSource();
             GetImageSourceFromFileName(fileName);
             var pngFileName = fileName.Replace(".dds", ".png").
                 Replace(".DDS", ".png").
                 Replace(".tga", ".png").
                 Replace(".jpg", ".png").
                 Replace(".TGA", ".png");
-            if (!File.Exists(pngFileName)) return new BitmapImage();
+            if (!File.Exists(pngFileName)) return GetEmptyImageSource();
             var sourceImage = Image.FromFile(pngFileName);
             var targetImage = new BitmapImage();
 

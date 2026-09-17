@@ -18,6 +18,14 @@ namespace UIEdit.Controllers
         public string SourceText { get; set; }
         public static UIDialog Dialog { get; set; }
 
+        private static double ParseDimension(string value)
+        {
+            var dimension = Convert.ToDouble(value);
+            return double.IsNaN(dimension) || double.IsInfinity(dimension) || dimension < 0
+                ? 0
+                : dimension;
+        }
+
         public Exception Parse(string text, string path)
         {
             try
@@ -31,9 +39,9 @@ namespace UIEdit.Controllers
                 if (xmlDoc.DocumentElement.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name"))
                     Dialog.Name = xmlDoc.DocumentElement.Attributes["Name"].Value;
                 if (xmlDoc.DocumentElement.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width"))
-                    Dialog.Width = Convert.ToDouble(xmlDoc.DocumentElement.Attributes["Width"].Value);
+                    Dialog.Width = ParseDimension(xmlDoc.DocumentElement.Attributes["Width"].Value);
                 if (xmlDoc.DocumentElement.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height"))
-                    Dialog.Height = Convert.ToDouble(xmlDoc.DocumentElement.Attributes["Height"].Value);
+                    Dialog.Height = ParseDimension(xmlDoc.DocumentElement.Attributes["Height"].Value);
                 if (xmlDoc.DocumentElement.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Resource"))
                 {
                     var dlgRes = xmlDoc.DocumentElement.ChildNodes.Cast<XmlNode>().First(t => t.Name == "Resource");
@@ -49,8 +57,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) editControl.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) editControl.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) editControl.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) editControl.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) editControl.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) editControl.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) editControl.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Hint"))
                     {
                         var textNode = element.ChildNodes.Cast<XmlNode>().First(node => node.Name == "Hint");
@@ -100,8 +108,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) imageControl.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) imageControl.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) imageControl.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) imageControl.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) imageControl.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) imageControl.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) imageControl.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Hint"))
                     {
                         var textNode = element.ChildNodes.Cast<XmlNode>().First(node => node.Name == "Hint");
@@ -118,8 +126,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) scrollControl.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) scrollControl.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) scrollControl.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) scrollControl.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) scrollControl.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) scrollControl.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) scrollControl.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(node => node.Name == "Resource"))
                     {
                         var resourceNode = element.ChildNodes.Cast<XmlNode>().First(t => t.Name == "Resource");
@@ -158,8 +166,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) progressBar.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) progressBar.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) progressBar.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) progressBar.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) progressBar.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) progressBar.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) progressBar.Height = ParseDimension(element.Attributes["Height"].Value);
 
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Resource"))
                     {
@@ -187,8 +195,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) radioControl.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) radioControl.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) radioControl.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) radioControl.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) radioControl.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) radioControl.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) radioControl.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Hint"))
                     {
                         var textNode = element.ChildNodes.Cast<XmlNode>().First(node => node.Name == "Hint");
@@ -222,8 +230,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) checkBox.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) checkBox.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) checkBox.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) checkBox.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) checkBox.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) checkBox.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) checkBox.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Hint"))
                     {
                         var textNode = element.ChildNodes.Cast<XmlNode>().First(node => node.Name == "Hint");
@@ -259,8 +267,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) buttonControl.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) buttonControl.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) buttonControl.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) buttonControl.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) buttonControl.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) buttonControl.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) buttonControl.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Hint"))
                     {
                         var textNode = element.ChildNodes.Cast<XmlNode>().First(node => node.Name == "Hint");
@@ -312,8 +320,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) listBox.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) listBox.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) listBox.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) listBox.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) listBox.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) listBox.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) listBox.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "MultiLine")) listBox.MultiLine = element.Attributes["MultiLine"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "LineSpace")) listBox.LineSpace = Convert.ToInt32(element.Attributes["LineSpace"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Hint"))
@@ -384,8 +392,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) Tree.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) Tree.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) Tree.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) Tree.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) Tree.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) Tree.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) Tree.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Indent")) Tree.Indent = Convert.ToInt32(element.Attributes["Indent"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Hint"))
                     {
@@ -473,8 +481,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) textArea.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) textArea.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) textArea.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) textArea.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) textArea.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) textArea.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) textArea.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "LineSpace")) textArea.LineSpace = Convert.ToInt32(element.Attributes["LineSpace"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Hint"))
                     {
@@ -538,8 +546,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) control.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) control.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) control.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) control.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) control.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) control.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) control.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Hint"))
                     {
                         var textNode = element.ChildNodes.Cast<XmlNode>().First(node => node.Name == "Hint");
@@ -573,8 +581,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) comboBox.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) comboBox.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) comboBox.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) comboBox.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) comboBox.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) comboBox.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) comboBox.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Hint"))
                     {
                         var textNode = element.ChildNodes.Cast<XmlNode>().First(node => node.Name == "Hint");
@@ -613,8 +621,8 @@ namespace UIEdit.Controllers
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Name")) labelControl.Name = element.Attributes["Name"].Value;
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "x")) labelControl.X = Convert.ToDouble(element.Attributes["x"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "y")) labelControl.Y = Convert.ToDouble(element.Attributes["y"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) labelControl.Width = Convert.ToDouble(element.Attributes["Width"].Value);
-                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) labelControl.Height = Convert.ToDouble(element.Attributes["Height"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Width")) labelControl.Width = ParseDimension(element.Attributes["Width"].Value);
+                    if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Height")) labelControl.Height = ParseDimension(element.Attributes["Height"].Value);
                     if (element.Attributes.Cast<XmlAttribute>().Any(t => t.Name == "Align")) labelControl.Align = Convert.ToInt32(element.Attributes["Align"].Value);
                     if (element.ChildNodes.Cast<XmlNode>().Any(t => t.Name == "Hint"))
                     {
@@ -656,7 +664,7 @@ namespace UIEdit.Controllers
                 Height = Dialog.Height,
                 Stretch = Stretch.Fill,
                 StretchDirection = StretchDirection.Both,
-                Source = Dialog.FrameImage == null ? new BitmapImage() : Core.TrueStretchImage(Dialog.FrameImage, Dialog.Width, Dialog.Height)
+                Source = Dialog.FrameImage == null ? null : Core.TrueStretchImage(Dialog.FrameImage, Dialog.Width, Dialog.Height)
             });
             foreach (var control in Dialog.Edits)
             {
@@ -688,7 +696,9 @@ namespace UIEdit.Controllers
             {
                 dialogCanvas.Children.Add(new Image
                 {
-                    ToolTip = pic.Name,
+                    ToolTip = File.Exists(pic.FileName)
+                        ? pic.Name
+                        : string.Format("{0}: arquivo não encontrado\n{1}", pic.Name, pic.FileName),
                     Width = pic.Width,
                     Height = pic.Height,
                     Stretch = Stretch.Fill,

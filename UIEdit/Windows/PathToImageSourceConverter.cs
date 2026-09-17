@@ -48,7 +48,7 @@ namespace UIEdit.Windows {
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
-            return new BitmapImage();
+            return Binding.DoNothing;
         }
     }
 }
