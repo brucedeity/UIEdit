@@ -4,7 +4,7 @@
         xmlns:avalon="clr-namespace:ICSharpCode.AvalonEdit;assembly=ICSharpCode.AvalonEdit"
         Background="#F0F0F0"
         Icon="../logo.ico"
-        Title="UI编辑器" Height="562" Width="1055">
+        Title="UI Editor" Height="562" Width="1055">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -40,9 +40,9 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center">
-                    <TextBlock Text="由 pdev 开发 © 2013" Foreground="ForestGreen" Grid.Column="1" Margin="10 0" HorizontalAlignment="Left"/>
-                    <TextBlock Text="由 slug 编辑 © 2020" Foreground="Orange" Grid.Column="1" Margin="10 0" HorizontalAlignment="Left"/>
-                    <TextBlock Text="免费软件" Foreground="BlueViolet" Grid.Column="2" Margin="10 0" HorizontalAlignment="Left"/>
+                    <TextBlock Text="Developed by pdev © 2013" Foreground="ForestGreen" Grid.Column="1" Margin="10 0" HorizontalAlignment="Left"/>
+                    <TextBlock Text="Edited by slug &amp; brucedeity © 2020" Foreground="Orange" Grid.Column="1" Margin="10 0" HorizontalAlignment="Left"/>
+                    <TextBlock Text="Freeware" Foreground="BlueViolet" Grid.Column="2" Margin="10 0" HorizontalAlignment="Left"/>
                 </StackPanel>
                 <Button x:Name="BtnGotoGithub" Grid.Column="3" Margin="10 0 0 0" Click="BtnGotoGithub_OnClick" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
@@ -50,12 +50,12 @@
                     </StackPanel>
                 </Button>
             </Grid>
-            <Button Content="界面文件路径：" Padding="5 2" Grid.Row="1" Click="BtnInterfacesPath_OnClick"/>
+            <Button Content="Interface files path:" Padding="5 2" Grid.Row="1" Click="BtnInterfacesPath_OnClick"/>
             <TextBlock x:Name="TbInterfacesPath" Margin="5,0,0,0" Grid.Row="1" Grid.Column="1"/>
-            <Button Content="贴图文件路径：" Padding="5 2" Grid.Row="2" Click="BtnSurfacesPath_OnClick"/>
+            <Button Content="Texture files path:" Padding="5 2" Grid.Row="2" Click="BtnSurfacesPath_OnClick"/>
             <TextBlock x:Name="TbSurfacesPath" Margin="5,0,0,0" Grid.Row="2" Grid.Column="1"/>
         </Grid>
-        <GroupBox x:Name="GbSourceFiles" Header="对话框" Grid.Row="1">
+        <GroupBox x:Name="GbSourceFiles" Header="Dialogs" Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -67,7 +67,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="TxtSearch"/>
-                    <Button Grid.Column="1" ToolTip="清除筛选" Click="BtnClearFilter_OnClick">
+                    <Button Grid.Column="1" ToolTip="Clear filter" Click="BtnClearFilter_OnClick">
                         <Image Source="../Resources/clear.png"/>
                     </Button>
                 </Grid>
@@ -87,11 +87,11 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="搜索" VerticalAlignment="Center"/>
+                <TextBlock Text="Search" VerticalAlignment="Center"/>
                 <TextBox x:Name="TbSearchInText" Grid.Column="1" VerticalAlignment="Stretch" Margin="2 2 0 2"/>
                 <StackPanel Orientation="Horizontal" Grid.Column="2">
-                    <Button Content="上一个" Margin="2" Click="BtnSearchPrevTextFragment_OnClick"/>
-                    <Button Content="下一个" Margin="0 2 2 2" Click="BtnSearchNextTextFragment_OnClick"/>
+                    <Button Content="Previous" Margin="2" Click="BtnSearchPrevTextFragment_OnClick"/>
+                    <Button Content="Next" Margin="0 2 2 2" Click="BtnSearchNextTextFragment_OnClick"/>
                 </StackPanel>
             </Grid>
             <Border BorderThickness="2" BorderBrush="Black" Grid.Row="1">
@@ -112,14 +112,14 @@
                         Click="BtnCommit_OnClick">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="../Resources/commit.png" Height="16"/>
-                        <TextBlock Text="应用修改" Margin="5 2"/>
+                        <TextBlock Text="Apply changes" Margin="5 2"/>
                     </StackPanel>
                 </Button>
                 <Button x:Name="BtnCancel" Margin="2 2" HorizontalAlignment="Right" Grid.Column="2"
                         Click="BtnCancel_OnClick">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="../Resources/rollback.png" Height="16"/>
-                        <TextBlock Text="取消修改" Margin="5 2"/>
+                        <TextBlock Text="Cancel changes" Margin="5 2"/>
                     </StackPanel>
                 </Button>
             </Grid>
@@ -128,6 +128,6 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="2">
             <Canvas ClipToBounds="True" x:Name="DialogCanvas" Background="Black" Width="1920"  Height="1080" Grid.Row="1" Grid.Column="2"/>
         </ScrollViewer>
-        <CheckBox x:Name="CbBtName" Content="元素名称" ToolTip="相邻元素过多时开启可便于识别" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5" VerticalAlignment="Center" Grid.Row="2" Checked="CbBtnName_Checked" Unchecked="CbBtName_Unchecked"/>
+        <CheckBox x:Name="CbBtName" Content="Element names" ToolTip="Enable when there are many adjacent elements to make them easier to identify" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5" VerticalAlignment="Center" Grid.Row="2" Checked="CbBtnName_Checked" Unchecked="CbBtName_Unchecked"/>
     </Grid>
 </Window>

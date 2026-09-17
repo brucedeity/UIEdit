@@ -133,7 +133,7 @@ namespace UIEdit.Windows {
         }
 
         private void BtnGotoGithub_OnClick(object sender, RoutedEventArgs e) {
-            System.Diagnostics.Process.Start("https://github.com/lzw981731/UIEdit");
+            System.Diagnostics.Process.Start("https://github.com/brucedeity/UIEdit");
         }
 
         private void CbBtnName_Checked(object sender, RoutedEventArgs e)

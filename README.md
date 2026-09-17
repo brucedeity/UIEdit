@@ -1,45 +1,56 @@
-# **UIEdit：诛仙（Angelica 引擎）UI 可视化编辑器**
+# UIEdit: Perfect World (Angelica Engine) UI Editor
 
-**UIEdit** 是专为 **Angelica 引擎**（诛仙等游戏使用的 2D/3D 游戏引擎）开发的所见即所得 UI 编辑工具。
+UIEdit is a WYSIWYG UI editor for the Angelica Engine, used by games such as Perfect World. It allows interface files to be previewed and edited visually.
 
-## 🔧 **核心功能**
-- **所见即所得**：实时可视化设计 UI 界面，编辑即可预览效果
-- **拖拽编辑**：精确放置、缩放和对齐按钮、面板、滑块、文本框等 UI 组件
-- **实时预览**：即时预览 UI 在游戏中的呈现效果，支持多种分辨率和宽高比
-- **组件化架构**：每个 UI 元素模块化、可定制，支持动画、过渡和事件绑定
-- **主题与样式管理**：创建和应用统一的视觉主题，包括字体、颜色和纹理
-- **多语言支持**：内置多语言文本管理和动态内容更新工具
+## Features
 
-## 🧩 **与 Angelica 引擎集成**
-- **无缝工作流**：UIEdit 直接对接 Angelica 引擎的资源管线，UI 设计与游戏逻辑实时同步
-- **脚本绑定**：将 UI 元素绑定到游戏脚本
-- **预制件系统**：保存和复用 UI 布局，保持菜单、HUD 和对话框的一致性
+- **WYSIWYG editing**: design and preview UI layouts in real time.
+- **Drag-and-drop editing**: position, resize, and align buttons, panels, sliders, text boxes, and other UI components.
+- **Real-time preview**: preview interfaces at different resolutions and aspect ratios.
+- **Component-based design**: customize UI elements with support for animations, transitions, and event bindings.
+- **Theme and style management**: create and apply consistent fonts, colors, and textures.
+- **Multilingual support**: manage text and dynamic content for multiple languages.
 
-## 🛠️ **开发者工具**
-- **层级与图层管理**：清晰的树形结构组织 UI 元素，支持 Z 序和分组
-- **事件系统**：支持鼠标、触摸和手柄输入的交互行为定义
-- **调试工具**：可视化碰撞盒、锚点和布局约束
+## Angelica Engine Integration
 
-## 🎮 **适用场景**
-- 主菜单、暂停界面、设置面板
-- 游戏 HUD（血条、小地图、计分板）
-- 对话系统和背包界面
-- 自定义编辑工具和 Mod 制作
+- **Seamless workflow**: work directly with Angelica Engine interface and texture resources.
+- **Script bindings**: connect UI elements to game scripts.
+- **Reusable layouts**: save and reuse UI layouts for menus, HUDs, and dialogs.
 
-## 📥 **下载**
-前往 [Releases](https://github.com/lzw981731/UIEdit/releases) 页面下载最新版本。
+## Developer Tools
 
-运行要求：Windows 7+，.NET Framework 4.8（Win10/11 自带）。
+- **Hierarchy and layers**: organize UI elements with clear layering and grouping.
+- **Event support**: define mouse, touch, and controller interactions.
+- **Debugging tools**: inspect collision boxes, anchors, and layout constraints.
 
-## 🛠️ **构建**
-项目使用 GitHub Actions 自动构建，push 到 `master` 分支即可触发。
+## Use Cases
 
-本地构建需要：
-- Visual Studio 2019+ 或 MSBuild
-- .NET Framework 4.8 SDK
-- NuGet
+- Main menus, pause screens, and settings panels.
+- Game HUDs, health bars, minimaps, and scoreboards.
+- Dialogs, inventories, and custom interface screens.
+- Custom tools and mod development.
 
-## 📝 **致谢**
-- 原作者：[pdev](https://github.com/perfectdev/UIEdit)
-- 编辑改进：slug © 2020
-- 中文汉化：[lzw981731](https://github.com/lzw981731)
+## Download
+
+Visit the [Releases](https://github.com/brucedeity/UIEdit/releases) page to download the latest version.
+
+Requirements: Windows 7 or later and .NET Framework 4.8.
+
+## Build
+
+The project uses GitHub Actions for automated builds. Pushing to the `master` branch triggers the workflow.
+
+Local builds require:
+
+- Visual Studio 2019 or later, or MSBuild.
+- .NET Framework 4.8 Developer Pack.
+- NuGet.
+
+Build the `Release|x86` configuration because the project uses the 32-bit native `FreeImage.dll` dependency.
+
+## Acknowledgements
+
+- Original author: [pdev](https://github.com/perfectdev/UIEdit).
+- Improvements by slug © 2020.
+- Contributions and maintenance by [brucedeity](https://github.com/brucedeity).
+- Chinese localization by [lzw981731](https://github.com/lzw981731).

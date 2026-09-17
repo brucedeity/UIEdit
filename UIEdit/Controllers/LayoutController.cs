@@ -698,7 +698,7 @@ namespace UIEdit.Controllers
                 {
                     ToolTip = File.Exists(pic.FileName)
                         ? pic.Name
-                        : string.Format("{0}: arquivo não encontrado\n{1}", pic.Name, pic.FileName),
+                        : string.Format("{0}: file not found\n{1}", pic.Name, pic.FileName),
                     Width = pic.Width,
                     Height = pic.Height,
                     Stretch = Stretch.Fill,
